@@ -73,7 +73,7 @@ class MainViewModel(
         }
     }
 
-    fun fetchRideEstimationData(couponName : String) {
+    fun fetchRideEstimationData(couponName: String) {
         viewModelScope.launch(Dispatchers.IO) {
             runCatching {
                 rideEstimationRepository.fetchRideEstimation(couponName)
@@ -90,7 +90,7 @@ class MainViewModel(
         _lastSelectedPosition.value = position
     }
 
-    fun setCouponeName(couponName : String) {
+    fun setCouponeName(couponName: String) {
         _couponName.value = couponName
     }
 }

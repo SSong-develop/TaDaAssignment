@@ -20,7 +20,7 @@ object Injection {
     private val loggingInterceptor =
         HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC)
 
-    fun provideOkHttpClient() =
+    private fun provideOkHttpClient() =
         OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
             .connectTimeout(10, TimeUnit.SECONDS)
@@ -28,17 +28,17 @@ object Injection {
             .connectionPool(ConnectionPool(0, 5, TimeUnit.MINUTES))
             .build()
 
-    fun provideRetrofit(): Retrofit =
+    private fun provideRetrofit(): Retrofit =
         Retrofit.Builder()
             .baseUrl(BaseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .client(provideOkHttpClient())
             .build()
 
-    fun provideRideEstimationService() =
+    private fun provideRideEstimationService() =
         provideRetrofit().create(RideEstimationService::class.java)
 
-    fun provideRideStatusService() =
+    private fun provideRideStatusService() =
         provideRetrofit().create(RideStatusService::class.java)
 
     private fun provideRideEstimationRepository() = RideEstimationRepository(

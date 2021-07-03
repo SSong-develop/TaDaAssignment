@@ -1,9 +1,8 @@
 package com.ssong_develop.tadaassignment.utils
 
 import android.widget.ImageView
-import kotlin.math.roundToInt
 
-fun ImageView.sizeUpImageView(){
+fun ImageView.sizeUpImageView() {
     val params = layoutParams
 
     params.width = params.width + context.dpToPixel(4)

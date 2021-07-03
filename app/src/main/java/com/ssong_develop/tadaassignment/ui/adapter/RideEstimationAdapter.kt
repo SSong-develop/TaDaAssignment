@@ -8,8 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ssong_develop.tadaassignment.databinding.ViewRideEstimateBinding
 import com.ssong_develop.tadaassignment.domain.RideEstimation
 import com.ssong_develop.tadaassignment.ui.viewmodel.MainViewModel
-import com.ssong_develop.tadaassignment.utils.sizeDownImageView
-import com.ssong_develop.tadaassignment.utils.sizeUpImageView
 
 class RideEstimationAdapter(
     private val onItemClicked: (idx: Int) -> Unit,

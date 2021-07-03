@@ -1,15 +1,14 @@
 package com.ssong_develop.tadaassignment.api
 
-import com.google.gson.annotations.SerializedName
 import com.ssong_develop.tadaassignment.api.dto.RideStatusDTO
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface RideStatusService{
+interface RideStatusService {
     @GET("RideStatus")
     suspend fun getRideStatus(
-        @Query("rideType") rideType : String
-    ) : RideStatusDTO
+        @Query("rideType") rideType: String
+    ): RideStatusDTO
 }
 
 
