@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.ssong_develop.tadaassignment.domain.RideEstimation" />
+        
+        <variable
+            name="on_click"
+            type="kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt;" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:onClick="@{() -> on_click.invoke()}">
+
+        <ImageView
+            android:id="@+id/iv_ride_estimate_car"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:scaleType="centerCrop"
+            image_url="@{item.rideType.rideTypeImageUrl.rideTypeImageUrl}"
+            image_width="@{item.rideType.rideTypeImageUrl.rideTypeImageWidth}"
+            image_height="@{item.rideType.rideTypeImageUrl.rideTypeImageHeight}"
+            tools:src="@drawable/ic_launcher_foreground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_ride_estimate_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="4dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text="@{item.rideType.rideTypeName}"
+            tools:text="라이트"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/iv_ride_estimate_car"
+            app:layout_constraintTop_toTopOf="@id/iv_ride_estimate_car"
+            app:layout_constraintBottom_toTopOf="@id/tv_ride_estimate_description" />
+
+        <TextView
+            android:id="@+id/tv_ride_estimate_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{item.rideType.rideTypeDescription}"
+            tools:text="바로가는 일상이동"
+            app:layout_constraintStart_toStartOf="@id/tv_ride_estimate_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_ride_estimate_name"
+            app:layout_constraintBottom_toBottomOf="@id/iv_ride_estimate_car" />
+
+        <TextView
+            android:id="@+id/tv_ride_estimate_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:textColor="@color/black"
+            android:text="@{`예상` + Integer.toString(item.originalCost) + `원`}"
+            tools:text="예상 12,800원"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

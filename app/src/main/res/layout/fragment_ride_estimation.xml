@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.ssong_develop.tadaassignment.ui.viewmodel.MainViewModel" />
+
+        <variable
+            name="fragment"
+            type="com.ssong_develop.tadaassignment.ui.fragment.RideEstimationFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.fragment.RideEstimationFragment">
+
+        <View
+            android:id="@+id/view_temp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="#DBDBDB"
+            app:layout_constraintBottom_toTopOf="@id/rv_ride_estimation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_ride_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/white"
+            android:padding="8dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:visibility="gone"
+            ride_status_visibility="@{vm.rideStatusData}"
+            android:text="@{vm.rideStatusData.statusMessage}"
+            app:layout_constraintBottom_toTopOf="@id/rv_ride_estimation"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="라이트 차랑이 있습니다." />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_ride_estimation"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            app:layout_constraintBottom_toTopOf="@id/cl_coupon_status"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_temp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_coupon_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            app:layout_constraintEnd_toEndOf="@id/rv_ride_estimation"
+            app:layout_constraintStart_toStartOf="@id/rv_ride_estimation"
+            app:layout_constraintTop_toBottomOf="@id/rv_ride_estimation">
+
+            <ImageView
+                android:id="@+id/iv_coupon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_coupon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_coupon_status"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_coupon_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="보유한 쿠폰 없음"
+                android:onClick="@{() -> fragment.navigateRegisterCoupon()}"
+                app:layout_constraintBottom_toBottomOf="@id/iv_coupon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_coupon"
+                app:layout_constraintTop_toTopOf="@id/iv_coupon"
+                tools:text="보유한 쿠폰 없음" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="#2A2A4C"
+            android:padding="16dp"
+            android:text="호출하기"
+            android:onClick="@{() -> vm.fetchRideStatusData()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cl_coupon_status" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
