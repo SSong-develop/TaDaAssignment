@@ -90,7 +90,7 @@ class MainViewModel(
         _lastSelectedPosition.value = position
     }
 
-    fun setCouponeName(couponName: String) {
+    fun setCouponName(couponName: String) {
         _couponName.value = couponName
     }
 }

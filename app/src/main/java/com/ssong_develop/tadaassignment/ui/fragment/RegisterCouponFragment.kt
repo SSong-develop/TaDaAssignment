@@ -37,7 +37,7 @@ class RegisterCouponFragment : Fragment() {
     }
 
     fun registerCoupon() {
-        viewModel.setCouponeName(binding.edtCouponName.text.toString())
+        viewModel.setCouponName(binding.edtCouponName.text.toString())
         navigateBackStack()
     }
 }
