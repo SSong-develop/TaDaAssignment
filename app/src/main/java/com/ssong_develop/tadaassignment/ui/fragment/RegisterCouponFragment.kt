@@ -32,7 +32,6 @@ class RegisterCouponFragment : Fragment() {
 
     fun navigateBackStack() {
         parentFragmentManager.beginTransaction()
-            .setCustomAnimations(R.anim.exit_from_right, R.anim.no_action)
             .replace(R.id.fcv_main, RideEstimationFragment()).commitNow()
     }
 

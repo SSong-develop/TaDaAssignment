@@ -9,6 +9,9 @@ import com.ssong_develop.tadaassignment.databinding.ViewRideEstimateBinding
 import com.ssong_develop.tadaassignment.domain.RideEstimation
 import com.ssong_develop.tadaassignment.ui.viewmodel.MainViewModel
 
+/**
+ * Click 됐을 때 차량 이미지가 커지고 , 다른 게 클릭되면 다시 작아진다.
+ */
 class RideEstimationAdapter(
     private val onItemClicked: (idx: Int) -> Unit,
     private val viewModel: MainViewModel

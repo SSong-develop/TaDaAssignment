@@ -1,10 +1,13 @@
 package com.ssong_develop.tadaassignment.ui.fragment
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -14,6 +17,7 @@ import com.ssong_develop.tadaassignment.databinding.FragmentRideEstimationBindin
 import com.ssong_develop.tadaassignment.ui.adapter.RideEstimationAdapter
 import com.ssong_develop.tadaassignment.ui.viewmodel.MainViewModel
 import com.ssong_develop.tadaassignment.utils.AutoClearedBinding
+import com.ssong_develop.tadaassignment.utils.hideKeyboard
 
 class RideEstimationFragment : Fragment() {
 
@@ -35,6 +39,7 @@ class RideEstimationFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.fragment = this
         binding.vm = viewModel
+        view.hideKeyboard()
 
         observeErrorHandleData()
         configureRecyclerView()
@@ -70,9 +75,14 @@ class RideEstimationFragment : Fragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun observeCouponName() {
         viewModel.couponName.observe(viewLifecycleOwner) {
             viewModel.fetchRideEstimationData(it)
+            binding.tvCouponStatus.apply {
+                setTextColor(Color.parseColor("#283873"))
+                text = "쿠폰 적용됨\n$it"
+            }
         }
     }
 
