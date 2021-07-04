@@ -75,6 +75,7 @@ class RideEstimationFragment : Fragment() {
         }
     }
 
+    // bindingAdapter로 뺄 수도 있음
     @SuppressLint("SetTextI18n")
     private fun observeCouponName() {
         viewModel.couponName.observe(viewLifecycleOwner) {

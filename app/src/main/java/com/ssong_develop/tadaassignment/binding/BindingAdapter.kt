@@ -1,5 +1,7 @@
 package com.ssong_develop.tadaassignment.binding
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -29,5 +31,19 @@ object BindingAdapter {
             textView.visibility = View.VISIBLE
         else
             textView.visibility = View.GONE
+    }
+
+    @SuppressLint("SetTextI18n")
+    @JvmStatic
+    @BindingAdapter("coupon_status")
+    fun setCouponStatus(textView : TextView , couponName : String?){
+        if(couponName == null){
+            textView.text = "보유한 쿠폰 없음"
+        }else{
+            textView.apply {
+                setTextColor(Color.parseColor("#283873"))
+                text = "쿠폰적용됨\n$couponName"
+            }
+        }
     }
 }

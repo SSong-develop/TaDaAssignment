@@ -82,7 +82,7 @@
                 android:id="@+id/tv_coupon_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="보유한 쿠폰 없음"
+                coupon_status="@{vm.couponName}"
                 android:onClick="@{() -> fragment.navigateRegisterCoupon()}"
                 app:layout_constraintBottom_toBottomOf="@id/iv_coupon"
                 app:layout_constraintEnd_toEndOf="parent"
