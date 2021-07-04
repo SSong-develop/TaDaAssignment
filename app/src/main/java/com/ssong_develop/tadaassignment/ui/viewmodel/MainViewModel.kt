@@ -44,7 +44,7 @@ class MainViewModel(
     private fun initializeFetchRideEstimationData() {
         viewModelScope.launch(Dispatchers.IO) {
             runCatching {
-                rideEstimationRepository.fetchRideEstimation("타다프리미엄웰컴쿠폰")
+                rideEstimationRepository.fetchRideEstimation(_couponName.value.toString())
             }.onSuccess {
                 Log.d("viewModel", it.toString())
                 _rideEstimationData.postValue(it.rideEstimationList)
@@ -58,8 +58,6 @@ class MainViewModel(
     fun fetchRideStatusData() {
         viewModelScope.launch(Dispatchers.IO) {
             runCatching {
-                // 이 데이터 호출하는 부분이 좀 역겹긴 함;;;
-                // select 된 데이터를 담아두고 있는게 좋을지 안좋을지에 대해서 한번 생각해보는 것도...
                 _lastSelectedPosition.value?.let {
                     _rideEstimationData.value?.get(
                         it

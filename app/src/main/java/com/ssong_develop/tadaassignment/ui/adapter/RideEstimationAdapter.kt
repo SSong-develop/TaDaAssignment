@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ssong_develop.tadaassignment.databinding.ViewRideEstimateBinding
 import com.ssong_develop.tadaassignment.domain.RideEstimation
 import com.ssong_develop.tadaassignment.ui.viewmodel.MainViewModel
+import com.ssong_develop.tadaassignment.utils.sizeDownImageView
+import com.ssong_develop.tadaassignment.utils.sizeUpImageView
 
 /**
  * Click 됐을 때 차량 이미지가 커지고 , 다른 게 클릭되면 다시 작아진다.
@@ -19,7 +21,9 @@ class RideEstimationAdapter(
 
     private val itemList = mutableListOf<RideEstimation>()
 
-    private val scaleUpAnimation = ScaleAnimation(1f, 1.2f, 1f, 1.2f)
+    private val scaleUpAnimation = ScaleAnimation(1f, 1.2f, 1f, 1.2f).apply {
+        duration = 500L
+    }
 
     val lastSelectedPosition
         get() = viewModel.lastSelectedPosition.value ?: -1
@@ -30,8 +34,9 @@ class RideEstimationAdapter(
             binding.onClick = {
                 notifyItemRangeChanged(0, itemList.size)
                 onItemClicked(adapterPosition)
-                if (lastSelectedPosition == adapterPosition)
+                if (lastSelectedPosition == adapterPosition) {
                     binding.ivRideEstimateCar.animation = scaleUpAnimation
+                }
             }
         }
 

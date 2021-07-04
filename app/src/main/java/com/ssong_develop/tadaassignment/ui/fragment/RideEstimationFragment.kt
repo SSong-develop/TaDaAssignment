@@ -71,19 +71,13 @@ class RideEstimationFragment : Fragment() {
 
     private fun observeErrorHandleData() {
         viewModel.errorHandleData.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), "$it", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "${it?.message}", Toast.LENGTH_SHORT).show()
         }
     }
 
-    // bindingAdapter로 뺄 수도 있음
-    @SuppressLint("SetTextI18n")
     private fun observeCouponName() {
         viewModel.couponName.observe(viewLifecycleOwner) {
-            viewModel.fetchRideEstimationData(it)
-            binding.tvCouponStatus.apply {
-                setTextColor(Color.parseColor("#283873"))
-                text = "쿠폰 적용됨\n$it"
-            }
+            it?.let { couponName -> viewModel.fetchRideEstimationData(couponName) }
         }
     }
 
