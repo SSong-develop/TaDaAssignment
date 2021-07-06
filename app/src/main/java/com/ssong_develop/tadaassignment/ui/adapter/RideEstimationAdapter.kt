@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ssong_develop.tadaassignment.databinding.ViewRideEstimateBinding
 import com.ssong_develop.tadaassignment.domain.RideEstimation
 import com.ssong_develop.tadaassignment.ui.viewmodel.MainViewModel
-import com.ssong_develop.tadaassignment.utils.sizeDownImageView
+import com.ssong_develop.tadaassignment.utils.rollbackOriginSize
 import com.ssong_develop.tadaassignment.utils.sizeUpImageView
 
 /**
@@ -34,17 +34,22 @@ class RideEstimationAdapter(
             binding.onClick = {
                 notifyItemRangeChanged(0, itemList.size)
                 onItemClicked(adapterPosition)
-                if (lastSelectedPosition == adapterPosition) {
-                    binding.ivRideEstimateCar.animation = scaleUpAnimation
-                }
             }
         }
 
         fun bind(item: RideEstimation) {
             binding.item = item
             if (lastSelectedPosition == adapterPosition) {
+                binding.ivRideEstimateCar.sizeUpImageView(
+                    item.rideType.rideTypeImageUrl.rideTypeImageWidth,
+                    item.rideType.rideTypeImageUrl.rideTypeImageHeight
+                )
                 binding.clItem.setBackgroundColor(Color.parseColor("#3332A2FA"))
             } else {
+                binding.ivRideEstimateCar.rollbackOriginSize(
+                    item.rideType.rideTypeImageUrl.rideTypeImageWidth,
+                    item.rideType.rideTypeImageUrl.rideTypeImageHeight
+                )
                 binding.clItem.setBackgroundColor(Color.parseColor("#ffffff"))
             }
         }

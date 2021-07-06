@@ -18,6 +18,7 @@ import com.ssong_develop.tadaassignment.ui.adapter.RideEstimationAdapter
 import com.ssong_develop.tadaassignment.ui.viewmodel.MainViewModel
 import com.ssong_develop.tadaassignment.utils.AutoClearedBinding
 import com.ssong_develop.tadaassignment.utils.hideKeyboard
+import com.ssong_develop.tadaassignment.utils.shortToast
 
 class RideEstimationFragment : Fragment() {
 
@@ -71,7 +72,7 @@ class RideEstimationFragment : Fragment() {
 
     private fun observeErrorHandleData() {
         viewModel.errorHandleData.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), "${it?.message}", Toast.LENGTH_SHORT).show()
+            requireContext().shortToast("${it?.message}의 이유로 실패했습니다. 한번 더 시도해주시겠어요?")
         }
     }
 

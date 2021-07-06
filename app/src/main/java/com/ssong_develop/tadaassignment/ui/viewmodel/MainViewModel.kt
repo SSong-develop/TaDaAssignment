@@ -44,7 +44,7 @@ class MainViewModel(
     private fun initializeFetchRideEstimationData() {
         viewModelScope.launch(Dispatchers.IO) {
             runCatching {
-                rideEstimationRepository.fetchRideEstimation(_couponName.value.toString())
+                rideEstimationRepository.fetchRideEstimation("")
             }.onSuccess {
                 Log.d("viewModel", it.toString())
                 _rideEstimationData.postValue(it.rideEstimationList)
