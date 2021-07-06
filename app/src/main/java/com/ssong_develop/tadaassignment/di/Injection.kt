@@ -1,10 +1,13 @@
 package com.ssong_develop.tadaassignment.di
 
+import android.app.Application
+import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import com.ssong_develop.tadaassignment.api.RideEstimationService
 import com.ssong_develop.tadaassignment.api.RideStatusService
 import com.ssong_develop.tadaassignment.api.repository.RideEstimationRepository
 import com.ssong_develop.tadaassignment.api.repository.RideStatusRepository
+import com.ssong_develop.tadaassignment.local.SharedPref
 import com.ssong_develop.tadaassignment.ui.factory.MainViewModelFactory
 import okhttp3.ConnectionPool
 import okhttp3.OkHttpClient
@@ -13,9 +16,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-object Injection {
-
-    private const val BaseUrl = "https://us-central1-homework-client-4e5cb.cloudfunctions.net/"
+class Injection(private val application: Application) {
 
     private val loggingInterceptor =
         HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC)
@@ -49,6 +50,19 @@ object Injection {
         provideRideStatusService()
     )
 
+    private fun provideSharedPref() = SharedPref(application)
+
     fun provideMainViewModelFactory(): ViewModelProvider.Factory =
-        MainViewModelFactory(provideRideEstimationRepository(), provideRideStatusRepository())
+        MainViewModelFactory(
+            provideRideEstimationRepository(),
+            provideRideStatusRepository(),
+            provideSharedPref()
+        )
+
+    fun provideSharedPref(context: Context): SharedPref =
+        SharedPref(context)
+
+    companion object {
+        private const val BaseUrl = "https://us-central1-homework-client-4e5cb.cloudfunctions.net/"
+    }
 }

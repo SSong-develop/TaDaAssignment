@@ -9,12 +9,15 @@ import com.ssong_develop.tadaassignment.api.repository.RideEstimationRepository
 import com.ssong_develop.tadaassignment.api.repository.RideStatusRepository
 import com.ssong_develop.tadaassignment.domain.RideEstimation
 import com.ssong_develop.tadaassignment.domain.RideStatus
+import com.ssong_develop.tadaassignment.local.SharedPref
+import com.ssong_develop.tadaassignment.utils.SingleLiveEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MainViewModel(
     private val rideEstimationRepository: RideEstimationRepository,
-    private val rideStatusRepository: RideStatusRepository
+    private val rideStatusRepository: RideStatusRepository,
+    private val sharedPref: SharedPref
 ) : ViewModel() {
 
     private val _rideEstimationData = MutableLiveData<List<RideEstimation>>()
@@ -89,5 +92,18 @@ class MainViewModel(
 
     fun setCouponName(couponName: String) {
         _couponName.value = couponName
+    }
+
+    // 단 한번만 실행하도록 하는 함수
+    fun setSingleInvoke(){
+        sharedPref.onSingleInvoke()
+    }
+
+    // 단 한번만 실행을 했는지 안했는지를 확인하는 함수
+    fun isSingleInvoke() : Boolean = sharedPref.isAlreadySingleInvoke()
+
+    // 단 한번만 실행했던 것을 해제해서 다시 호출할 수 있도록 하는 함수
+    fun releaseSingleInvoke() {
+        sharedPref.releaseSingleInvoke()
     }
 }
