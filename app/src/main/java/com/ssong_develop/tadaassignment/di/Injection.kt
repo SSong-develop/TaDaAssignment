@@ -9,8 +9,10 @@ import com.ssong_develop.tadaassignment.api.repository.RideEstimationRepository
 import com.ssong_develop.tadaassignment.api.repository.RideStatusRepository
 import com.ssong_develop.tadaassignment.local.SharedPref
 import com.ssong_develop.tadaassignment.ui.factory.MainViewModelFactory
-import okhttp3.*
-import okhttp3.logging.HttpLoggingInterceptor
+import okhttp3.ConnectionPool
+import okhttp3.Interceptor
+import okhttp3.OkHttpClient
+import okhttp3.Protocol
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
@@ -24,26 +26,26 @@ class Injection(private val application: Application) {
         OkHttpClient.Builder()
             .addInterceptor(Interceptor { chain ->
                 val request = chain.request()
-                try{
+                try {
                     var response = chain.proceed(request)
-
-                    if(response.code == 408){
+                    if (response.code == 408) {
                         kotlin.runCatching {
                             response.body?.close()
                             chain.proceed(request)
                         }.onSuccess {
                             response = it
                         }.onFailure {
-                            Log.e("error","timeOut Error")
+                            Log.e("error", "timeOut Error")
                         }
                     }
                     response
-                } catch (e : Throwable) {
+                } catch (e: Throwable) {
                     throw e
                 }
             })
             .connectTimeout(10, TimeUnit.SECONDS)
             .readTimeout(10, TimeUnit.SECONDS)
+            .protocols(listOf(Protocol.HTTP_1_1))
             .connectionPool(ConnectionPool(0, 5, TimeUnit.MINUTES))
             .build()
 

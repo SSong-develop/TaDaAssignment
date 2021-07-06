@@ -47,7 +47,6 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:text="라이트 차랑이 있습니다." />
 
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_ride_estimation"
             android:layout_width="match_parent"
@@ -99,7 +98,7 @@
             android:backgroundTint="#2A2A4C"
             android:padding="16dp"
             android:text="호출하기"
-            android:onClick="@{() -> vm.fetchRideStatusData()}"
+            android:onDebounceClick="@{() -> vm.fetchRideStatusData()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
