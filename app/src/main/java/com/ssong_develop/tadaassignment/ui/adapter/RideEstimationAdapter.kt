@@ -11,9 +11,6 @@ import com.ssong_develop.tadaassignment.ui.viewmodel.MainViewModel
 import com.ssong_develop.tadaassignment.utils.rollbackOriginSize
 import com.ssong_develop.tadaassignment.utils.sizeUpImageView
 
-/**
- * Click 됐을 때 차량 이미지가 커지고 , 다른 게 클릭되면 다시 작아진다.
- */
 class RideEstimationAdapter(
     private val onItemClicked: (idx: Int) -> Unit,
     private val viewModel: MainViewModel
@@ -21,11 +18,7 @@ class RideEstimationAdapter(
 
     private val itemList = mutableListOf<RideEstimation>()
 
-    private val scaleUpAnimation = ScaleAnimation(1f, 1.2f, 1f, 1.2f).apply {
-        duration = 500L
-    }
-
-    val lastSelectedPosition
+    private val lastSelectedPosition
         get() = viewModel.lastSelectedPosition.value ?: -1
 
     inner class RideEstimationViewHolder(private val binding: ViewRideEstimateBinding) :

@@ -1,7 +1,6 @@
 package com.ssong_develop.tadaassignment.di
 
 import android.app.Application
-import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import com.ssong_develop.tadaassignment.api.RideEstimationService
 import com.ssong_develop.tadaassignment.api.RideStatusService
@@ -58,9 +57,6 @@ class Injection(private val application: Application) {
             provideRideStatusRepository(),
             provideSharedPref()
         )
-
-    fun provideSharedPref(context: Context): SharedPref =
-        SharedPref(context)
 
     companion object {
         private const val BaseUrl = "https://us-central1-homework-client-4e5cb.cloudfunctions.net/"

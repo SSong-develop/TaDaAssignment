@@ -13,6 +13,9 @@ import com.ssong_develop.tadaassignment.local.SharedPref
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+/**
+ * TODO : EstimateCount 가 계속 0으로 나오는데 이부분이 좀 애매하네요...
+ */
 class MainViewModel(
     private val rideEstimationRepository: RideEstimationRepository,
     private val rideStatusRepository: RideStatusRepository,
