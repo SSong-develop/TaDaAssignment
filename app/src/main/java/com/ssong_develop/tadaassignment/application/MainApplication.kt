@@ -15,6 +15,6 @@ class MainApplication : Application() {
     }
 
     companion object {
-        lateinit var injection : Injection
+        lateinit var injection: Injection
     }
 }

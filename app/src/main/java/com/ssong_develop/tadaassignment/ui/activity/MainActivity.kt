@@ -7,7 +7,6 @@ import androidx.databinding.DataBindingUtil
 import com.ssong_develop.tadaassignment.R
 import com.ssong_develop.tadaassignment.application.MainApplication
 import com.ssong_develop.tadaassignment.databinding.ActivityMainBinding
-import com.ssong_develop.tadaassignment.di.Injection
 import com.ssong_develop.tadaassignment.ui.fragment.RideEstimationFragment
 import com.ssong_develop.tadaassignment.ui.viewmodel.MainViewModel
 

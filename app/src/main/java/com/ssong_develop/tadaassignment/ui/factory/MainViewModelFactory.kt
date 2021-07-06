@@ -1,6 +1,5 @@
 package com.ssong_develop.tadaassignment.ui.factory
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.ssong_develop.tadaassignment.api.repository.RideEstimationRepository

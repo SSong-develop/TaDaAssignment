@@ -74,7 +74,7 @@ class RideEstimationFragment : Fragment() {
 
     private fun observeCouponName() {
         viewModel.couponName.observe(viewLifecycleOwner) {
-            if(!viewModel.isSingleInvoke()){
+            if (!viewModel.isSingleInvoke()) {
                 viewModel.fetchRideEstimationData(it)
                 viewModel.setSingleInvoke()
             }
