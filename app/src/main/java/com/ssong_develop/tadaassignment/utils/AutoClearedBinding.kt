@@ -13,7 +13,6 @@ class AutoClearedBinding<T : Any> : ReadWriteProperty<Fragment, T>, LifecycleObs
     override fun getValue(thisRef: Fragment, property: KProperty<*>): T =
         _binding ?: throw IllegalArgumentException("You can't getValue outside of Lifecycle")
 
-
     override fun setValue(thisRef: Fragment, property: KProperty<*>, value: T) {
         thisRef.viewLifecycleOwner.lifecycle.removeObserver(this)
         _binding = value
