@@ -1,6 +1,7 @@
 package com.ssong_develop.tadaassignment.di
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import com.ssong_develop.tadaassignment.api.RideEstimationService
 import com.ssong_develop.tadaassignment.api.RideStatusService
@@ -8,10 +9,7 @@ import com.ssong_develop.tadaassignment.api.repository.RideEstimationRepository
 import com.ssong_develop.tadaassignment.api.repository.RideStatusRepository
 import com.ssong_develop.tadaassignment.local.SharedPref
 import com.ssong_develop.tadaassignment.ui.factory.MainViewModelFactory
-import okhttp3.ConnectionPool
-import okhttp3.Interceptor
-import okhttp3.OkHttpClient
-import okhttp3.Response
+import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -21,16 +19,24 @@ class Injection(private val application: Application) {
 
     private fun provideOkHttpClient() =
         OkHttpClient.Builder()
-            .addInterceptor(object : Interceptor {
-                override fun intercept(chain: Interceptor.Chain): Response {
-                    val request = chain.request()
+            .addInterceptor(Interceptor { chain ->
+                val request = chain.request()
+                try{
                     var response = chain.proceed(request)
-                    var tryCount = 0
-                    while(!response.isSuccessful && tryCount < 3){
-                        tryCount += 1
-                        response = chain.proceed(request)
+
+                    if(response.code == 408){
+                        kotlin.runCatching {
+                            response.body?.close()
+                            chain.proceed(request)
+                        }.onSuccess {
+                            response = it
+                        }.onFailure {
+                            Log.e("error","timeOut Error")
+                        }
                     }
-                    return response
+                    response
+                } catch (e : Throwable) {
+                    throw e
                 }
             })
             .connectTimeout(10, TimeUnit.SECONDS)
