@@ -16,6 +16,7 @@ class SharedPref(
         putBoolean(IS_SINGLE_INVOKE_KEY, true)
     }
 
+    // 단 한번만 호출되어야 하는 함수를 다시 재호출해야할 때 값을 false로 설정해서 재호출하도록 한다.
     fun releaseSingleInvoke() = sharedPreferences.edit(true) {
         putBoolean(IS_SINGLE_INVOKE_KEY, false)
     }
