@@ -37,11 +37,11 @@ object BindingAdapter {
     @SuppressLint("SetTextI18n")
     @JvmStatic
     @BindingAdapter("coupon_status")
-    fun setCouponStatus(textView : TextView , couponName : String?){
-        if(couponName == null){
+    fun setCouponStatus(textView: TextView, couponName: String?) {
+        if (couponName == null) {
             textView.text = "보유한 쿠폰 없음"
             textView.setTextColor(Color.parseColor("#9DA0AE"))
-        }else{
+        } else {
             textView.apply {
                 setTextColor(Color.parseColor("#283873"))
                 text = "쿠폰적용됨\n$couponName"
@@ -51,8 +51,8 @@ object BindingAdapter {
 
     @JvmStatic
     @BindingAdapter("strike_through")
-    fun setStrikeThrough(textView : TextView , isStrikeThrough : Boolean){
-        if(isStrikeThrough)
+    fun setStrikeThrough(textView: TextView, isStrikeThrough: Boolean) {
+        if (isStrikeThrough)
             textView.paintFlags = textView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
         else
             textView.paintFlags = textView.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG
@@ -61,10 +61,10 @@ object BindingAdapter {
     @SuppressLint("SetTextI18n")
     @JvmStatic
     @BindingAdapter("original_cost_text")
-    fun setOriginalCostText(textView : TextView , originalCost : Int){
-        if(originalCost == 0){
+    fun setOriginalCostText(textView: TextView, originalCost: Int) {
+        if (originalCost == 0) {
             textView.text = ""
-        }else{
+        } else {
             textView.text = "예상${originalCost}원"
         }
     }

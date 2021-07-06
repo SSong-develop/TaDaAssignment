@@ -49,7 +49,6 @@ class MainViewModel(
                 Log.d("viewModel", it.toString())
                 _rideEstimationData.postValue(it.rideEstimationList)
             }.onFailure {
-                // 다시 한번 api를 호출하는 방법도 있으니까 이 점을 다시한번 고민해보는 것도??
                 _errorHandleData.postValue(it)
             }
         }

@@ -2,7 +2,7 @@ package com.ssong_develop.tadaassignment.utils
 
 import android.widget.ImageView
 
-fun ImageView.sizeUpImageView(width : Int , height : Int) {
+fun ImageView.sizeUpImageView(width: Int, height: Int) {
     val params = layoutParams
 
     params.width = context.pixelToDp(width + 40)
@@ -11,7 +11,7 @@ fun ImageView.sizeUpImageView(width : Int , height : Int) {
     layoutParams = params
 }
 
-fun ImageView.rollbackOriginSize(width : Int , height : Int) {
+fun ImageView.rollbackOriginSize(width: Int, height: Int) {
     val params = layoutParams
 
     params.width = context.pixelToDp(width)
