@@ -9,7 +9,9 @@ import com.ssong_develop.tadaassignment.api.repository.RideStatusRepository
 import com.ssong_develop.tadaassignment.local.SharedPref
 import com.ssong_develop.tadaassignment.ui.factory.MainViewModelFactory
 import okhttp3.ConnectionPool
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -17,12 +19,20 @@ import java.util.concurrent.TimeUnit
 
 class Injection(private val application: Application) {
 
-    private val loggingInterceptor =
-        HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC)
-
     private fun provideOkHttpClient() =
         OkHttpClient.Builder()
-            .addInterceptor(loggingInterceptor)
+            .addInterceptor(object : Interceptor {
+                override fun intercept(chain: Interceptor.Chain): Response {
+                    val request = chain.request()
+                    var response = chain.proceed(request)
+                    var tryCount = 0
+                    while(!response.isSuccessful && tryCount < 3){
+                        tryCount += 1
+                        response = chain.proceed(request)
+                    }
+                    return response
+                }
+            })
             .connectTimeout(10, TimeUnit.SECONDS)
             .readTimeout(10, TimeUnit.SECONDS)
             .connectionPool(ConnectionPool(0, 5, TimeUnit.MINUTES))
