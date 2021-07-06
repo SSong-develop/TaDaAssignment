@@ -5,8 +5,8 @@ import android.widget.ImageView
 fun ImageView.sizeUpImageView(width : Int , height : Int) {
     val params = layoutParams
 
-    params.width = context.pixelToDp(width + 20)
-    params.height = context.pixelToDp(height + 20)
+    params.width = context.pixelToDp(width + 40)
+    params.height = context.pixelToDp(height + 40)
 
     layoutParams = params
 }
