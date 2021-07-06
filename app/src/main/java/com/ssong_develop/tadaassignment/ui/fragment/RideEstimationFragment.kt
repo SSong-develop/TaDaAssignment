@@ -68,7 +68,7 @@ class RideEstimationFragment : Fragment() {
 
     private fun observeErrorHandleData() {
         viewModel.errorHandleData.observe(viewLifecycleOwner) {
-            requireContext().shortToast("${it?.message}와 같은 이유로 실패했습니다\n한번 더 시도해주시겠어요?")
+            requireContext().shortToast("${it?.message}")
         }
     }
 
