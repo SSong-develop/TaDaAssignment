@@ -15,6 +15,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
+/**
+ * Retry Code는 한번 해보고 안되면 그때 CallAdapterFactory 패턴으로 변경해서 해보는걸로 해봅시다.
+ */
 class Injection(private val application: Application) {
 
     private fun provideOkHttpClient() =
