@@ -27,4 +27,9 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().replace(R.id.fcv_main, RideEstimationFragment())
             .commitNow()
     }
+
+    override fun onRestart() {
+        super.onRestart()
+        viewModel.initializeFetchRideEstimationData()
+    }
 }

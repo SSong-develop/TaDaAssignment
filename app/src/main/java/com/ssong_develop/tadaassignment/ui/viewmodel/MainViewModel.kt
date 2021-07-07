@@ -46,7 +46,7 @@ class MainViewModel(
         initializeFetchRideEstimationData()
     }
 
-    private fun initializeFetchRideEstimationData() {
+    fun initializeFetchRideEstimationData() {
         viewModelScope.launch(Dispatchers.IO) {
             runCatching {
                 rideEstimationRepository.fetchRideEstimation("")
