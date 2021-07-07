@@ -3,7 +3,6 @@ package com.ssong_develop.tadaassignment.ui.adapter
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.view.animation.ScaleAnimation
 import androidx.recyclerview.widget.RecyclerView
 import com.ssong_develop.tadaassignment.databinding.ViewRideEstimateBinding
 import com.ssong_develop.tadaassignment.domain.RideEstimation
